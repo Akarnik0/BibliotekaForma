@@ -29,6 +29,7 @@ namespace BibliotekaNikola
         CurrencyManager trenutni;
         string unospisaca = "select * from Pisac";
         SqlCommand unosubazu;
+        SqlCommand promjeniubazi;
 
         public Form2()
         {
@@ -40,8 +41,9 @@ namespace BibliotekaNikola
         {
             //salje komandu biranja svih vrijednosti iz pisaca koristeci vezu
             adapter = new SqlDataAdapter(unospisaca, veza);
-
+            //komande za unos u bazu
             unosubazu = new SqlCommand("insert into Pisac(ID_pisca,Ime_pisca) values(@ID_pisca,@Ime_pisca)", veza);
+            promjeniubazi = new SqlCommand("update Pisac set Ime_pisca=@Ime_pisca where ID_pisca=@ID_pisca",veza);
             //dodavanje podataka iz adaptera u dataset pisac
             pisac = new DataSet();
             adapter.Fill(pisac,"Pisac");
@@ -71,9 +73,11 @@ namespace BibliotekaNikola
             //pretvaranje unosa korisnika u stringove
             string ID_pisca = textBox1.Text;
             string Ime_pisca = textBox2.Text;
-            //dodjeljivanje ovih vrijednosti parametrima unutar komande
+            //dodjeljivanje ovih vrijednosti parametrima unutar komandi
             unosubazu.Parameters.AddWithValue("@ID_pisca", ID_pisca);
             unosubazu.Parameters.AddWithValue("@Ime_pisca", Ime_pisca);
+            promjeniubazi.Parameters.AddWithValue("@ID_pisca", ID_pisca);
+            promjeniubazi.Parameters.AddWithValue("@Ime_pisca", Ime_pisca);
 
             //objasnjenje Regex.IsMatch:
             // ^ - oznacava pocetak stringa
@@ -120,7 +124,17 @@ namespace BibliotekaNikola
                 //OVO TREBA NAPRAVITI!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 else 
                 {
-
+                    try
+                    {
+                        veza.Open();
+                        promjeniubazi.ExecuteNonQuery();
+                        prikazpozicije();
+                    }
+                    //ID_pisca - slucaj kada vrijednost ne postoji
+                    catch (Exception ne_postoji)
+                    {
+                        MessageBox.Show(ne_postoji.Message, "Greška!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
         }
