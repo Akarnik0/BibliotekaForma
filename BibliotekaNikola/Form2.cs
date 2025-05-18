@@ -119,6 +119,7 @@ namespace BibliotekaNikola
                         unosubazu.ExecuteNonQuery();
                         pregled.AddNew();
                         prikazpozicije();
+                        veza.Close();
                     }
                     //ID_pisca - slucaj kada je unesena redundantna vrijednost
                     catch (Exception redundantnost)
@@ -134,6 +135,7 @@ namespace BibliotekaNikola
                         veza.Open();
                         promjeniubazi.ExecuteNonQuery();
                         prikazpozicije();
+                        veza.Close();
                     }
                     //ID_pisca - slucaj kada vrijednost ne postoji
                     catch (Exception ne_postoji)
