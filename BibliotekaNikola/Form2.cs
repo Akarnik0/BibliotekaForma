@@ -31,6 +31,10 @@ namespace BibliotekaNikola
         SqlCommand unosubazu;
         SqlCommand promjeniubazi;
 
+        //stringovi
+        string ID_pisca;
+        string Ime_pisca;
+
         public Form2()
         {
             InitializeComponent();
@@ -71,8 +75,8 @@ namespace BibliotekaNikola
         private void button1_Click(object sender, EventArgs e)
         {
             //pretvaranje unosa korisnika u stringove
-            string ID_pisca = textBox1.Text;
-            string Ime_pisca = textBox2.Text;
+            ID_pisca = textBox1.Text;
+            Ime_pisca = textBox2.Text;
             //dodjeljivanje ovih vrijednosti parametrima unutar komandi
             unosubazu.Parameters.AddWithValue("@ID_pisca", ID_pisca);
             unosubazu.Parameters.AddWithValue("@Ime_pisca", Ime_pisca);
