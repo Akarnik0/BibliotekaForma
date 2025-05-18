@@ -34,6 +34,7 @@ namespace BibliotekaNikola
         //stringovi
         string ID_pisca;
         string Ime_pisca;
+        string ID_pisca_stari;
 
         public Form2()
         {
@@ -47,7 +48,7 @@ namespace BibliotekaNikola
             adapter = new SqlDataAdapter(unospisaca, veza);
             //komande za unos u bazu
             unosubazu = new SqlCommand("insert into Pisac(ID_pisca,Ime_pisca) values(@ID_pisca,@Ime_pisca)", veza);
-            promjeniubazi = new SqlCommand("update Pisac set Ime_pisca=@Ime_pisca where ID_pisca=@ID_pisca",veza);
+            promjeniubazi = new SqlCommand("update Pisac set Ime_pisca=@Ime_pisca, ID_pisca=@ID_pisca where ID_pisca=@ID_pisca_stari", veza);
             //dodavanje podataka iz adaptera u dataset pisac
             pisac = new DataSet();
             adapter.Fill(pisac,"Pisac");
@@ -56,6 +57,7 @@ namespace BibliotekaNikola
             trenutni = (CurrencyManager)this.BindingContext[pregled];
             pregled.AddNew();
             Navigacija();
+            ID_pisca_stari = textBox1.Text;
             prikazpozicije();
         }
 
@@ -82,6 +84,7 @@ namespace BibliotekaNikola
             unosubazu.Parameters.AddWithValue("@Ime_pisca", Ime_pisca);
             promjeniubazi.Parameters.AddWithValue("@ID_pisca", ID_pisca);
             promjeniubazi.Parameters.AddWithValue("@Ime_pisca", Ime_pisca);
+            promjeniubazi.Parameters.AddWithValue("@ID_pisca_stari",ID_pisca_stari);
 
             //objasnjenje Regex.IsMatch:
             // ^ - oznacava pocetak stringa
@@ -124,8 +127,6 @@ namespace BibliotekaNikola
                     }
                 }
                 //u slucaju da mjenjamo postojecu vrijednost u bazi
-                //PAZNJA!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                //OVO TREBA NAPRAVITI!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 else 
                 {
                     try
@@ -158,18 +159,21 @@ namespace BibliotekaNikola
         private void button2_Click(object sender, EventArgs e)
         {
             trenutni.Position = 0;
+            ID_pisca_stari = textBox1.Text;
             prikazpozicije();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             trenutni.Position = trenutni.Position - 1;
+            ID_pisca_stari = textBox1.Text;
             prikazpozicije();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             trenutni.Position = trenutni.Position + 1;
+            ID_pisca_stari = textBox1.Text;
             prikazpozicije();
         }
 
