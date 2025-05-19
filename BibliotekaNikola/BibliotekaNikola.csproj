@@ -57,19 +57,46 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form2.cs">
+    <Compile Include="Pisac.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form2.Designer.cs">
-      <DependentUpon>Form2.cs</DependentUpon>
+    <Compile Include="Pisac.Designer.cs">
+      <DependentUpon>Pisac.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Izdavač.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Izdavač.Designer.cs">
+      <DependentUpon>Izdavač.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Član biblioteke.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Član biblioteke.Designer.cs">
+      <DependentUpon>Član biblioteke.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Članska_karta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Članska_karta.Designer.cs">
+      <DependentUpon>Članska_karta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Žanr.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Žanr.Designer.cs">
+      <DependentUpon>Žanr.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form2.resx">
-      <DependentUpon>Form2.cs</DependentUpon>
+    <EmbeddedResource Include="Pisac.resx">
+      <DependentUpon>Pisac.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Izdavač.resx">
+      <DependentUpon>Izdavač.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -80,6 +107,15 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Član biblioteke.resx">
+      <DependentUpon>Član biblioteke.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Članska_karta.resx">
+      <DependentUpon>Članska_karta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Žanr.resx">
+      <DependentUpon>Žanr.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="BibliotekaDataSet1.xsc">
       <DependentUpon>BibliotekaDataSet1.xsd</DependentUpon>
     </None>

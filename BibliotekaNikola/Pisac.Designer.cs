@@ -31,15 +31,11 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.bibliotekaDataSet = new BibliotekaNikola.BibliotekaDataSet();
-            this.bibliotekaDataSet1 = new BibliotekaNikola.BibliotekaDataSet();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.bibliotekaDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bibliotekaDataSet1)).BeginInit();
             this.SuspendLayout();
             // 
             // textBox1
@@ -66,16 +62,6 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(177, 20);
             this.textBox2.TabIndex = 3;
-            // 
-            // bibliotekaDataSet
-            // 
-            this.bibliotekaDataSet.DataSetName = "BibliotekaDataSet";
-            this.bibliotekaDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // bibliotekaDataSet1
-            // 
-            this.bibliotekaDataSet1.DataSetName = "BibliotekaDataSet";
-            this.bibliotekaDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // button2
             // 
@@ -142,8 +128,6 @@
             this.Name = "Form2";
             this.Text = "Form2";
             this.Load += new System.EventHandler(this.Form2_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.bibliotekaDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bibliotekaDataSet1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -153,8 +137,6 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox2;
-        private BibliotekaDataSet bibliotekaDataSet;
-        private BibliotekaDataSet bibliotekaDataSet1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
