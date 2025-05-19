@@ -22,7 +22,6 @@ namespace BibliotekaNikola
         //stvaranje veze sa bazom
         SqlConnection veza = new SqlConnection(@"Data Source =.\sqlexpress; Initial Catalog = Biblioteka; Integrated Security = True; Encrypt = False");
         //adapter,dataset,dataview,currencymanager i komanda za bazu
-        //pakistanac nije dobro objasnio currencymanager
         SqlDataAdapter adapter;
         DataSet pisac;
         DataView pregled;
@@ -52,7 +51,6 @@ namespace BibliotekaNikola
             //dodavanje podataka iz adaptera u dataset pisac
             pisac = new DataSet();
             adapter.Fill(pisac,"Pisac");
-            //pakistanac nije dobro objasnio ovaj dio, ako program prestane raditi vjerovatno je do ovoga
             pregled = new DataView(pisac.Tables["Pisac"]);
             trenutni = (CurrencyManager)this.BindingContext[pregled];
             pregled.AddNew();
@@ -93,7 +91,6 @@ namespace BibliotekaNikola
             // $ - oznacava kraj stringa
 
             //ID_pisca - slucaj kada unos nije 4 broja
-            //Luka(moj brat, ne Lazarov) mi je rekao da ovdje napisem "moj tata"...
             if (!Regex.IsMatch(ID_pisca, @"^\d{4}$"))
             {
                 MessageBox.Show("Morate unijeti tačno 4 broja u polje ID_pisca!", "Greška!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
