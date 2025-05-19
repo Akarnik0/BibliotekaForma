@@ -20,7 +20,7 @@ namespace BibliotekaNikola
     {
 
         //stvaranje veze sa bazom
-        SqlConnection veza = new SqlConnection(@"Data Source =.\sqlexpress; Initial Catalog = Biblioteka; Integrated Security = True; Encrypt = False");
+        SqlConnection veza = new SqlConnection(@"Data Source=DESKTOP-1GI01IH\MSSQLSERVER01;Initial Catalog=Biblioteka;Integrated Security=True;Encrypt=False");
         //adapter,dataset,dataview,currencymanager i komanda za bazu
         SqlDataAdapter adapter;
         DataSet pisac;
@@ -77,7 +77,7 @@ namespace BibliotekaNikola
             //pretvaranje unosa korisnika u stringove
             ID_pisca = textBox1.Text;
             Ime_pisca = textBox2.Text;
-            //dodjeljivanje ovih vrijednosti parametrima unutar komandi
+            //dodjeljivanje ovih parametara unutar komandi
             unosubazu.Parameters.AddWithValue("@ID_pisca", ID_pisca);
             unosubazu.Parameters.AddWithValue("@Ime_pisca", Ime_pisca);
             promjeniubazi.Parameters.AddWithValue("@ID_pisca", ID_pisca);
@@ -117,6 +117,9 @@ namespace BibliotekaNikola
                         pregled.AddNew();
                         prikazpozicije();
                         veza.Close();
+                        //brisanje parametara
+                        unosubazu.Parameters.Clear();
+                        promjeniubazi.Parameters.Clear();
                     }
                     //ID_pisca - slucaj kada je unesena redundantna vrijednost
                     catch (Exception redundantnost)
@@ -133,6 +136,9 @@ namespace BibliotekaNikola
                         promjeniubazi.ExecuteNonQuery();
                         prikazpozicije();
                         veza.Close();
+                        //brisanje parametara
+                        unosubazu.Parameters.Clear();
+                        promjeniubazi.Parameters.Clear();
                     }
                     //ID_pisca - slucaj kada vrijednost ne postoji
                     catch (Exception ne_postoji)
