@@ -17,7 +17,7 @@ namespace BibliotekaNikola
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Članska_karta());
+            Application.Run(new Form2());
         }
     }
 }

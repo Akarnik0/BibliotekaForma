@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Text.RegularExpressions;
+
 
 namespace BibliotekaNikola
 {
@@ -39,6 +41,14 @@ namespace BibliotekaNikola
         SqlCommand unosubazu;
         SqlCommand promjeniubazi;
 
+        //stringovi koji se koriste u komandama
+        string ID_knjige;
+        string Ime_knjige;
+        string ID_pisca;
+        string ID_žanra;
+        string ID_izdavača;
+        string ID_knjige_stari;
+
         //stringovi koji se koriste pri mjenjanju vrijednosti
         public Knjiga()
         {
@@ -54,7 +64,8 @@ namespace BibliotekaNikola
             adapterizdavac = new SqlDataAdapter(unosizdavac, veza);
 
             //komande za unos u bazu
-            //TREBA SE NAPRAVITI !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            unosubazu = new SqlCommand("insert into Knjiga(ID_knjige,Ime_knjige,ID_pisca,ID_žanra,ID_izdavača) values(@ID_knjige,@Ime_knjige,@ID_pisca,@ID_žanra,@ID_izdavača)", veza);
+            promjeniubazi = new SqlCommand("update Knjiga set ID_knjige=@ID_knjige, Ime_knjige=@Ime_knjige, ID_pisca=@ID_pisca, ID_žanra=@ID_žanra, ID_izdavača=@ID_izdavača where ID_knjige=@ID_knjige_stari", veza);
 
 
             //dodavanje podataka iz adaptera u dataset pisac
@@ -85,6 +96,7 @@ namespace BibliotekaNikola
             trenutni = (CurrencyManager)this.BindingContext[pregled];
             pregled.AddNew();
             Navigacija();
+            ID_knjige_stari = textBox1.Text;
         }
 
         //navigacija po podacima iz baze
@@ -102,27 +114,132 @@ namespace BibliotekaNikola
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            //pretvaranje unosa korisnika u stringove
+            ID_knjige = textBox1.Text;
+            Ime_knjige = textBox2.Text;
+            //ukratko: pojavi se error ako ne stoji ova provjera jer selectedvalue moze biti null... puno objasnjenje bi bilo predugo
+            if (!string.IsNullOrEmpty(comboBox1.Text) && !string.IsNullOrEmpty(comboBox2.Text) && !string.IsNullOrEmpty(comboBox3.Text))
+            {
+                ID_pisca = comboBox1.SelectedValue.ToString();
+                ID_žanra = comboBox2.SelectedValue.ToString();
+                ID_izdavača = comboBox3.SelectedValue.ToString();
+            }
+            //dodjeljivanje ovih parametara unutar komandi
+            unosubazu.Parameters.AddWithValue("@ID_knjige", ID_knjige);
+            unosubazu.Parameters.AddWithValue("@Ime_knjige", Ime_knjige);
+            unosubazu.Parameters.AddWithValue("ID_pisca", ID_pisca);
+            unosubazu.Parameters.AddWithValue("ID_žanra", ID_žanra);
+            unosubazu.Parameters.AddWithValue("ID_izdavača", ID_izdavača);
+            promjeniubazi.Parameters.AddWithValue("@ID_knjige", ID_knjige);
+            promjeniubazi.Parameters.AddWithValue("@Ime_knjige", Ime_knjige);
+            promjeniubazi.Parameters.AddWithValue("@ID_pisca", ID_pisca);
+            promjeniubazi.Parameters.AddWithValue("@ID_žanra", ID_žanra);
+            promjeniubazi.Parameters.AddWithValue("@ID_izdavača", ID_izdavača);
+            //ID_knjige - slucaj kada unos nije 4 broja
+            if (!Regex.IsMatch(ID_knjige, @"^\d{4}$"))
+            {
+                MessageBox.Show("Morate unijeti tačno 4 broja u polje ID_knjige!", "Greška!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            //Ime_knjige - slucaj kada je prazno
+            if (string.IsNullOrEmpty(Ime_knjige))
+            {
+                MessageBox.Show("Ime_knjige ne smije biti prazno!", "Greška!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            //Ime_knjige - slucaj kada je predugo
+            if (Ime_knjige.Length > 255)
+            {
+                MessageBox.Show("Ime_knjige je predugo!", "Greška!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            //ID_pisca - slucaj kada je prazno
+            if (string.IsNullOrEmpty(comboBox1.Text))
+            {
+                MessageBox.Show("ID_pisca ne smije biti prazan!", "Greška!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            //ID_žanra - slucaj kada je prazno
+            if (string.IsNullOrEmpty(comboBox2.Text))
+            {
+                MessageBox.Show("ID_žanra ne smije biti prazan!", "Greška!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            //ID_izdavača - slucaj kada je prazno
+            if (string.IsNullOrEmpty(comboBox3.Text))
+            {
+                MessageBox.Show("ID_izdavača ne smije biti prazan!", "Greška!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            if(Regex.IsMatch(ID_knjige, @"^\d{4}$") && !string.IsNullOrEmpty(Ime_knjige) && Ime_knjige.Length < 255 && !string.IsNullOrEmpty(comboBox1.Text) && !string.IsNullOrEmpty(comboBox2.Text) && !string.IsNullOrEmpty(comboBox3.Text))
+            {
+                //u slucaju da unosimo novu vrijednost u bazu
+                if (trenutni.Position == trenutni.Count - 1)
+                {
+                    try
+                    {
+                        veza.Open();
+                        unosubazu.ExecuteNonQuery();
+                        pregled.AddNew();
+                        prikazpozicije();
+                        veza.Close();
+                        //brisanje parametara
+                        unosubazu.Parameters.Clear();
+                        promjeniubazi.Parameters.Clear();
+                    }
+                    //ID_pisca - slucaj kada je unesena redundantna vrijednost
+                    catch (Exception redundantnost)
+                    {
+                        MessageBox.Show(redundantnost.Message, "Greška!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                //u slucaju da mjenjamo postojecu vrijednost u bazi
+                else
+                {
+                    try
+                    {
+                        veza.Open();
+                        promjeniubazi.ExecuteNonQuery();
+                        prikazpozicije();
+                        veza.Close();
+                        //brisanje parametara
+                        unosubazu.Parameters.Clear();
+                        promjeniubazi.Parameters.Clear();
+                    }
+                    //ID_pisca - slucaj kada vrijednost ne postoji
+                    catch (Exception ne_postoji)
+                    {
+                        MessageBox.Show(ne_postoji.Message, "Greška!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
         }
 
+        private void prikazpozicije()
+        {
+            label1.Text = trenutni.Position + 1 + ". od " + trenutni.Count.ToString();
+        }
+
+        //za navigaciju
         private void button2_Click(object sender, EventArgs e)
         {
-
+            trenutni.Position = 0;
+            ID_knjige_stari = textBox1.Text;
+            prikazpozicije();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-
+            trenutni.Position = trenutni.Position - 1;
+            ID_knjige_stari = textBox1.Text;
+            prikazpozicije();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-
+            trenutni.Position = trenutni.Position + 1;
+            ID_knjige_stari = textBox1.Text;
+            prikazpozicije();
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-
+            trenutni.Position = trenutni.Count - 1;
+            prikazpozicije();
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
