@@ -17,7 +17,7 @@ namespace BibliotekaNikola
     public partial class Knjiga : Form
     {
         //stvaranje veze sa bazom
-        SqlConnection veza = new SqlConnection(@"Data Source =.\sqlexpress; Initial Catalog = Biblioteka; Integrated Security = True; Encrypt = False");
+        SqlConnection veza = new SqlConnection(@"Data Source=.\sqlexpress01;Initial Catalog=Biblioteka;Integrated Security=True;Encrypt=False;");
         //adapter,dataset,dataview,currencymanager i komanda za bazu
         SqlDataAdapter adapter;
         SqlDataAdapter adapterpisac;
@@ -73,7 +73,7 @@ namespace BibliotekaNikola
             pisac = new DataSet();
             zanr = new DataSet();
             izdavac = new DataSet();
-
+            
             adapterpisac.Fill(pisac,"Pisac");
             adapterzanr.Fill(zanr, "Žanr");
             adapterizdavac.Fill(izdavac, "Izdavač");
@@ -83,13 +83,13 @@ namespace BibliotekaNikola
             comboBox1.DisplayMember = "Ime_pisca";
             comboBox1.ValueMember = "ID_pisca";
             //lista podataka u combobox2
-            comboBox1.DataSource = zanr.Tables["Žanr"];
-            comboBox1.DisplayMember = "Ime_žanra";
-            comboBox1.ValueMember = "ID_žanra";
+            comboBox2.DataSource = zanr.Tables["Žanr"];
+            comboBox2.DisplayMember = "Ime_žanra";
+            comboBox2.ValueMember = "ID_žanra";
             //lista podataka u combobox3
-            comboBox1.DataSource = izdavac.Tables["Izdavač"];
-            comboBox1.DisplayMember = "Ime_izdavača";
-            comboBox1.ValueMember = "ID_izdavača";
+            comboBox3.DataSource = izdavac.Tables["Izdavač"];
+            comboBox3.DisplayMember = "Ime_izdavača";
+            comboBox3.ValueMember = "ID_izdavača";
 
             adapter.Fill(knjiga, "Knjiga");
             pregled = new DataView(knjiga.Tables["Knjiga"]);
@@ -97,16 +97,21 @@ namespace BibliotekaNikola
             pregled.AddNew();
             Navigacija();
             ID_knjige_stari = textBox1.Text;
+            prikazpozicije();
         }
 
         //navigacija po podacima iz baze
         private void Navigacija()
         {
             //sklonimo bilo koje prosle bindove sa tekst boxova
+            textBox1.DataBindings.Clear();
+            textBox2.DataBindings.Clear();
             comboBox1.DataBindings.Clear();
             comboBox2.DataBindings.Clear();
             comboBox3.DataBindings.Clear();
             //stavimo nas databind koji upisuje podatke iz baze u textbox
+            textBox1.DataBindings.Add("Text", pregled, "ID_knjige");
+            textBox2.DataBindings.Add("Text", pregled, "Ime_knjige");
             comboBox1.DataBindings.Add("SelectedValue", pregled, "ID_pisca");
             comboBox2.DataBindings.Add("SelectedValue", pregled, "ID_žanra");
             comboBox3.DataBindings.Add("SelectedValue", pregled, "ID_izdavača");
