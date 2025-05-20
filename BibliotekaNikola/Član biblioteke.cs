@@ -17,7 +17,7 @@ namespace BibliotekaNikola
     public partial class Član_biblioteke : Form
     {
         //stvaranje veze sa bazom
-        SqlConnection veza = new SqlConnection(@"Data Source =.\sqlexpress01; Initial Catalog = Biblioteka; Integrated Security = True; Encrypt = False");
+        SqlConnection veza = new SqlConnection(@"Data Source =.\sqlexpress; Initial Catalog = Biblioteka; Integrated Security = True; Encrypt = False");
         //adapter,dataset,dataview,currencymanager i komanda za bazu
         SqlDataAdapter adapter;
         DataSet član;

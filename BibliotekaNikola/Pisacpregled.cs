@@ -15,7 +15,7 @@ namespace BibliotekaNikola
     public partial class Pisacpregled : Form
     {
         //stvaranje veze sa bazom
-        SqlConnection veza = new SqlConnection(@"Data Source=.\sqlexpress;Initial Catalog=Biblioteka;Integrated Security=True;Encrypt=False;");
+        SqlConnection veza = new SqlConnection(@"Data Source =.\sqlexpress; Initial Catalog = Biblioteka; Integrated Security = True; Encrypt = False");
         SqlDataAdapter adapter;
         DataSet pisac;
 

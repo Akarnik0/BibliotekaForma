@@ -17,7 +17,7 @@ namespace BibliotekaNikola
     public partial class Knjiga : Form
     {
         //stvaranje veze sa bazom
-        SqlConnection veza = new SqlConnection(@"Data Source=.\sqlexpress01;Initial Catalog=Biblioteka;Integrated Security=True;Encrypt=False;");
+        SqlConnection veza = new SqlConnection(@"Data Source =.\sqlexpress; Initial Catalog = Biblioteka; Integrated Security = True; Encrypt = False");
         //adapter,dataset,dataview,currencymanager i komanda za bazu
         SqlDataAdapter adapter;
         SqlDataAdapter adapterpisac;
@@ -140,6 +140,7 @@ namespace BibliotekaNikola
             promjeniubazi.Parameters.AddWithValue("@ID_pisca", ID_pisca);
             promjeniubazi.Parameters.AddWithValue("@ID_žanra", ID_žanra);
             promjeniubazi.Parameters.AddWithValue("@ID_izdavača", ID_izdavača);
+            promjeniubazi.Parameters.AddWithValue("ID_knjige_stari",ID_knjige_stari);
             //ID_knjige - slucaj kada unos nije 4 broja
             if (!Regex.IsMatch(ID_knjige, @"^\d{4}$"))
             {
