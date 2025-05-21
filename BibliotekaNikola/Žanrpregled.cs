@@ -53,5 +53,10 @@ namespace BibliotekaNikola
             dataGridView1.DataSource = zanr.Tables["Žanr"];
             pretraga.Parameters.Clear();
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

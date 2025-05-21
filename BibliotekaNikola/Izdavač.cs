@@ -113,6 +113,7 @@ namespace BibliotekaNikola
                         //brisanje parametara
                         unosubazu.Parameters.Clear();
                         promjeniubazi.Parameters.Clear();
+                        label2.Text = "Podaci su uneseni u bazu";
                     }
                     //ID_izdavača - slucaj kada je unesena redundantna vrijednost
                     catch (Exception redundantnost)
@@ -132,6 +133,7 @@ namespace BibliotekaNikola
                         //brisanje parametara
                         unosubazu.Parameters.Clear();
                         promjeniubazi.Parameters.Clear();
+                        label2.Text = "Podaci su izmjenjeni u bazi";
                     }
                     //ID_izdavača - slucaj kada vrijednost ne postoji
                     catch (Exception ne_postoji)
@@ -172,6 +174,11 @@ namespace BibliotekaNikola
         {
             trenutni.Position = trenutni.Count - 1;
             prikazpozicije();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

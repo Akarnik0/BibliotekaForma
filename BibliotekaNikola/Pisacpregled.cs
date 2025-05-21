@@ -55,5 +55,10 @@ namespace BibliotekaNikola
             dataGridView1.DataSource = pisac.Tables["Pisac"];
             pretraga.Parameters.Clear();
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

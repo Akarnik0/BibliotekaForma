@@ -18,7 +18,7 @@ namespace BibliotekaNikola
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Knjigapregled());
+            Application.Run(new Form1());
         }
     }
 }

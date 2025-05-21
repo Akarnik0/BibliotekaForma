@@ -53,5 +53,10 @@ namespace BibliotekaNikola
             dataGridView1.DataSource = clan.Tables["Član_biblioteke"];
             pretraga.Parameters.Clear();
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

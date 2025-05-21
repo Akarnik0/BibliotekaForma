@@ -67,5 +67,10 @@ namespace BibliotekaNikola
             pretragaknjiga = new SqlCommand("USE Biblioteka SELECT Član_biblioteke.Ime_člana, Knjiga.Ime_knjige FROM Članska_karta INNER JOIN Član_biblioteke ON Članska_karta.ID_člana = Član_biblioteke.ID_člana INNER JOIN Knjiga ON Članska_karta.ID_knjige = Knjiga.ID_knjige where Ime_knjige like @Ime_knjige", veza);
             pretraziknjigu = new SqlDataAdapter(pretragaknjiga);
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
