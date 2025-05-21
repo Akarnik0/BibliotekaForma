@@ -132,15 +132,15 @@ namespace BibliotekaNikola
             //dodjeljivanje ovih parametara unutar komandi
             unosubazu.Parameters.AddWithValue("@ID_knjige", ID_knjige);
             unosubazu.Parameters.AddWithValue("@Ime_knjige", Ime_knjige);
-            unosubazu.Parameters.AddWithValue("ID_pisca", ID_pisca);
-            unosubazu.Parameters.AddWithValue("ID_žanra", ID_žanra);
-            unosubazu.Parameters.AddWithValue("ID_izdavača", ID_izdavača);
+            unosubazu.Parameters.AddWithValue("@ID_pisca", ID_pisca);
+            unosubazu.Parameters.AddWithValue("@ID_žanra", ID_žanra);
+            unosubazu.Parameters.AddWithValue("@ID_izdavača", ID_izdavača);
             promjeniubazi.Parameters.AddWithValue("@ID_knjige", ID_knjige);
             promjeniubazi.Parameters.AddWithValue("@Ime_knjige", Ime_knjige);
             promjeniubazi.Parameters.AddWithValue("@ID_pisca", ID_pisca);
             promjeniubazi.Parameters.AddWithValue("@ID_žanra", ID_žanra);
             promjeniubazi.Parameters.AddWithValue("@ID_izdavača", ID_izdavača);
-            promjeniubazi.Parameters.AddWithValue("ID_knjige_stari",ID_knjige_stari);
+            promjeniubazi.Parameters.AddWithValue("@ID_knjige_stari",ID_knjige_stari);
             //ID_knjige - slucaj kada unos nije 4 broja
             if (!Regex.IsMatch(ID_knjige, @"^\d{4}$"))
             {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BibliotekaNikola.BibliotekaDataSetTableAdapters;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace BibliotekaNikola
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Knjiga());
+            Application.Run(new Knjigapregled());
         }
     }
 }
