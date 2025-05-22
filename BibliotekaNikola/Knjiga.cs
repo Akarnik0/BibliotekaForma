@@ -240,14 +240,14 @@ namespace BibliotekaNikola
 
         private void button4_Click(object sender, EventArgs e)
         {
-            trenutni.Position = trenutni.Position + 1;
+            trenutni.Position = trenutni.Count - 1;
             ID_knjige_stari = textBox1.Text;
             prikazpozicije();
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            trenutni.Position = trenutni.Count - 1;
+            trenutni.Position = trenutni.Position + 1;
             prikazpozicije();
         }
 
