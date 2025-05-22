@@ -46,15 +46,19 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(183, 353);
+            this.label1.Font = new System.Drawing.Font("Rockwell", 11.25F);
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(222)))), ((int)(((byte)(201)))));
+            this.label1.Location = new System.Drawing.Point(321, 392);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.Size = new System.Drawing.Size(53, 17);
             this.label1.TabIndex = 16;
             this.label1.Text = "label1";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // button5
             // 
             this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(181)))), ((int)(((byte)(209)))));
+            this.button5.Font = new System.Drawing.Font("Rockwell", 11.25F);
             this.button5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(75)))), ((int)(((byte)(130)))));
             this.button5.Location = new System.Drawing.Point(453, 233);
             this.button5.Name = "button5";
@@ -67,6 +71,7 @@
             // button4
             // 
             this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(181)))), ((int)(((byte)(209)))));
+            this.button4.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(75)))), ((int)(((byte)(130)))));
             this.button4.Location = new System.Drawing.Point(380, 233);
             this.button4.Name = "button4";
@@ -79,6 +84,7 @@
             // button3
             // 
             this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(181)))), ((int)(((byte)(209)))));
+            this.button3.Font = new System.Drawing.Font("Rockwell", 11.25F);
             this.button3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(75)))), ((int)(((byte)(130)))));
             this.button3.Location = new System.Drawing.Point(234, 233);
             this.button3.Name = "button3";
@@ -91,6 +97,7 @@
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(181)))), ((int)(((byte)(209)))));
+            this.button2.Font = new System.Drawing.Font("Rockwell", 11.25F);
             this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(75)))), ((int)(((byte)(130)))));
             this.button2.Location = new System.Drawing.Point(161, 233);
             this.button2.Name = "button2";
@@ -113,6 +120,7 @@
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(181)))), ((int)(((byte)(209)))));
+            this.button1.Font = new System.Drawing.Font("Rockwell", 11.25F);
             this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(75)))), ((int)(((byte)(130)))));
             this.button1.Location = new System.Drawing.Point(307, 233);
             this.button1.Name = "button1";
@@ -135,15 +143,18 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(183, 324);
+            this.label2.Font = new System.Drawing.Font("Rockwell", 11.25F);
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(222)))), ((int)(((byte)(201)))));
+            this.label2.Location = new System.Drawing.Point(248, 332);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.Size = new System.Drawing.Size(0, 17);
             this.label2.TabIndex = 17;
-            this.label2.Text = "label2";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // button6
             // 
             this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(181)))), ((int)(((byte)(209)))));
+            this.button6.Font = new System.Drawing.Font("Rockwell", 11.25F);
             this.button6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(75)))), ((int)(((byte)(130)))));
             this.button6.Location = new System.Drawing.Point(663, 375);
             this.button6.Name = "button6";
