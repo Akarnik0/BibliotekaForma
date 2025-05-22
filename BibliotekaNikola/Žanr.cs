@@ -37,6 +37,7 @@ namespace BibliotekaNikola
 
         private void Žanr_Load(object sender, EventArgs e)
         {
+            label2.Text = null;
             //salje komandu biranja svih vrijednosti iz pisaca koristeci vezu
             adapter = new SqlDataAdapter(unoszanra, veza);
             //komande za unos u bazu
@@ -180,6 +181,11 @@ namespace BibliotekaNikola
         private void button6_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

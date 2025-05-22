@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -99,6 +100,15 @@ namespace BibliotekaNikola
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            DialogResult odgovor = MessageBox.Show("Jeste li sigurni da želite izaći iz baze podataka?", "Pažnja!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (odgovor == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
         }
     }
 }
